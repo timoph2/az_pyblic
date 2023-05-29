@@ -1,53 +1,102 @@
+resource "azurerm_virtual_network" "vnet" {
+  address_space       = var.address_space
+  location            = var.vnet_location
+  name                = var.vnet_name
+  resource_group_name = var.resource_group_name
+  bgp_community       = var.bgp_community
+  dns_servers         = var.dns_servers
+  tags = merge(var.tags, (/*<box>*/ (var.tracing_tags_enabled ? { for k, v in /*</box>*/ {
+    avm_git_commit           = "2b2f05969200c71b6609f4cdfa9120d48af55537"
+    avm_git_file             = "main.tf"
+    avm_git_last_modified_at = "2022-11-29 07:03:18"
+    avm_git_org              = "Azure"
+    avm_git_repo             = "terraform-azurerm-vnet"
+    avm_yor_trace            = "82564d49-81a8-489e-85d3-df176eada6a2"
+  } /*<box>*/ : replace(k, "avm_", var.tracing_tags_prefix) => v } : {}) /*</box>*/))
 
+  dynamic "ddos_protection_plan" {
+    for_each = var.ddos_protection_plan != null ? [var.ddos_protection_plan] : []
 
-resource "azurerm_resource_group" "rg" {
-  name     = "myTFResourceGroupToday2"
-  location = "westus2"
+    content {
+      enable = ddos_protection_plan.value.enable
+      id     = ddos_protection_plan.value.id
+    }
+  }
 }
 
+moved {
+  from = azurerm_subnet.subnet
+  to   = azurerm_subnet.subnet_count
+}
 
-# Configure the Azure provider
-# terraform {
-#   required_providers {
-#     azurerm = {
-#       source  = "hashicorp/azurerm"
-#       version = "~> 3.0.2"
-#     }
-#   }
+resource "azurerm_subnet" "subnet_count" {
+  count = var.use_for_each ? 0 : length(var.subnet_names)
 
-# #   required_version = ">= 1.1.0"
-# # }
+  address_prefixes                               = [var.subnet_prefixes[count.index]]
+  name                                           = var.subnet_names[count.index]
+  resource_group_name                            = var.resource_group_name
+  virtual_network_name                           = azurerm_virtual_network.vnet.name
+  enforce_private_link_endpoint_network_policies = lookup(var.subnet_enforce_private_link_endpoint_network_policies, var.subnet_names[count.index], false)
+  enforce_private_link_service_network_policies  = lookup(var.subnet_enforce_private_link_service_network_policies, var.subnet_names[count.index], false)
+  service_endpoints                              = lookup(var.subnet_service_endpoints, var.subnet_names[count.index], null)
 
-# provider "azurerm" {
-#   features {}
-# }
+  dynamic "delegation" {
+    for_each = lookup(var.subnet_delegation, var.subnet_names[count.index], {})
 
+    content {
+      name = delegation.key
 
-# # Configure the Azure provider
-# terraform {
-#   required_providers {
-#     azurerm = {
-#       source  = "hashicorp/azurerm"
-#       version = "~> 3.0.2"
-#     }
-#   }
+      service_delegation {
+        name    = lookup(delegation.value, "service_name")
+        actions = lookup(delegation.value, "service_actions", [])
+      }
+    }
+  }
+}
 
-#   required_version = ">= 1.1.0"
-# }
+resource "azurerm_subnet" "subnet_for_each" {
+  for_each = var.use_for_each ? toset(var.subnet_names) : []
 
-# provider "azurerm" {
-#   features {}
-    
-#     subscription_id   = "91df9625-4a94-4405-bb02-1c9d4d7d826e"
-#     tenant_id         = "9a6a19df-7f78-41f1-bab3-1cae14b3e251"
-#     # client_id         = "a24abe5f-4905-4e1e-8fea-1c5bde0be185"
-#     client_id         = "13a7abd6-364e-4853-a509-e77ed86899c2"
-#     client_secret     = "di.8Q~D9bC02ZbT8d0JL6YT8qW8-yqqxZgw6ObOo"
-    
-# }
+  address_prefixes                               = [local.subnet_names_prefixes[each.value]]
+  name                                           = each.value
+  resource_group_name                            = var.resource_group_name
+  virtual_network_name                           = azurerm_virtual_network.vnet.name
+  enforce_private_link_endpoint_network_policies = lookup(var.subnet_enforce_private_link_endpoint_network_policies, each.value, false)
+  enforce_private_link_service_network_policies  = lookup(var.subnet_enforce_private_link_service_network_policies, each.value, false)
+  service_endpoints                              = lookup(var.subnet_service_endpoints, each.value, null)
 
-# resource "azurerm_resource_group" "rg3" {
-#   name     = "myTFResourceGroup35"
-#   location = "westus2"
-# }
+  dynamic "delegation" {
+    for_each = lookup(var.subnet_delegation, each.value, {})
 
+    content {
+      name = delegation.key
+
+      service_delegation {
+        name    = lookup(delegation.value, "service_name")
+        actions = lookup(delegation.value, "service_actions", [])
+      }
+    }
+  }
+}
+
+locals {
+  azurerm_subnets = var.use_for_each ? [for s in azurerm_subnet.subnet_for_each : s] : [for s in azurerm_subnet.subnet_count : s]
+  azurerm_subnets_name_id_map = {
+    for index, subnet in local.azurerm_subnets :
+    subnet.name => subnet.id
+  }
+}
+
+resource "azurerm_subnet_network_security_group_association" "vnet" {
+  for_each = var.nsg_ids
+
+  network_security_group_id = each.value
+  subnet_id                 = local.azurerm_subnets_name_id_map[each.key]
+}
+
+resource "azurerm_subnet_route_table_association" "vnet" {
+  for_each = var.route_tables_ids
+
+  route_table_id = each.value
+  subnet_id      = local.azurerm_subnets_name_id_map[each.key]
+}
