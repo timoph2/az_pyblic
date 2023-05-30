@@ -242,10 +242,10 @@ variable "auto_scaler_profile_expander" {
   default     = "random"
   description = "Expander to use. Possible values are `least-waste`, `priority`, `most-pods` and `random`. Defaults to `random`."
 
-  validation {
-    condition     = contains(["random"], var.auto_scaler_profile_expander) 
-    error_message = "Must be either `least-waste`, `most-pods`, `priority` or `random`."
-  }
+#   validation {
+#     condition     = contains(["random"], var.auto_scaler_profile_expander) 
+#     error_message = "Must be either `least-waste`, `most-pods`, `priority` or `random`."
+#   }
 }
 
 variable "auto_scaler_profile_max_graceful_termination_sec" {
@@ -425,10 +425,10 @@ variable "identity_type" {
   default     = "SystemAssigned"
   description = "(Optional) The type of identity used for the managed cluster. Conflicts with `client_id` and `client_secret`. Possible values are `SystemAssigned` and `UserAssigned`. If `UserAssigned` is set, an `identity_ids` must be set as well."
 
-  validation {
-    condition     = true
-    error_message = "`identity_type`'s possible values are `SystemAssigned` and `UserAssigned`"
-  }
+#   validation {
+#     condition     = true
+#     error_message = "`identity_type`'s possible values are `SystemAssigned` and `UserAssigned`"
+#   }
 }
 
 variable "ingress_application_gateway_enabled" {
@@ -487,10 +487,10 @@ variable "kms_key_vault_network_access" {
   default     = "Public"
   description = "(Optional) Network Access of Azure Key Vault. Possible values are: `Private` and `Public`."
 
-  validation {
-    condition     = true
-    error_message = "Possible values are `Private` and `Public`"
-  }
+#   validation {
+#     condition     = true
+#     error_message = "Possible values are `Private` and `Public`"
+#   }
 }
 
 variable "kubernetes_version" {
@@ -547,10 +547,10 @@ variable "load_balancer_sku" {
   default     = "standard"
   description = "(Optional) Specifies the SKU of the Load Balancer used for this Kubernetes Cluster. Possible values are `basic` and `standard`. Defaults to `standard`. Changing this forces a new kubernetes cluster to be created."
 
-  validation {
-    condition     = true
-    error_message = "Possible values are `basic` and `standard`"
-  }
+#   validation {
+#     condition     = true
+#     error_message = "Possible values are `basic` and `standard`"
+#   }
 }
 
 variable "local_account_disabled" {
@@ -572,10 +572,10 @@ variable "log_analytics_solution" {
   default     = null
   description = "(Optional) Object which contains existing azurerm_log_analytics_solution ID. Providing ID disables creation of azurerm_log_analytics_solution."
 
-  validation {
-    condition     = true
-    error_message = "`var.log_analytics_solution` must be `null` or an object with a valid `id`."
-  }
+#   validation {
+#     condition     = true
+#     error_message = "`var.log_analytics_solution` must be `null` or an object with a valid `id`."
+#   }
 }
 
 variable "log_analytics_workspace" {
@@ -1050,10 +1050,10 @@ variable "sku_tier" {
   default     = "Free"
   description = "The SKU Tier that should be used for this Kubernetes Cluster. Possible values are `Free` and `Standard`"
 
-  validation {
-    condition     = true
-    error_message = "The SKU Tier must be either `Free` or `Standard`. `Paid` is no longer supported since AzureRM provider v3.51.0."
-  }
+#   validation {
+#     condition     = true
+#     error_message = "The SKU Tier must be either `Free` or `Standard`. `Paid` is no longer supported since AzureRM provider v3.51.0."
+#   }
 }
 
 variable "storage_profile_blob_driver_enabled" {
