@@ -776,7 +776,7 @@ variable "node_pools" {
       max_surge = number
     }))
     windows_profile = optional(object({
-      outbound_nat_enabled = true
+      outbound_nat_enabled = optional(bool)
     }))
     workload_runtime = optional(string)
     zones            = optional(set(string))
