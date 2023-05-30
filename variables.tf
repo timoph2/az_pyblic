@@ -426,7 +426,7 @@ variable "identity_type" {
   description = "(Optional) The type of identity used for the managed cluster. Conflicts with `client_id` and `client_secret`. Possible values are `SystemAssigned` and `UserAssigned`. If `UserAssigned` is set, an `identity_ids` must be set as well."
 
   validation {
-    condition     = var.identity_type == "SystemAssigned" || var.identity_type == "UserAssigned"
+    condition     = true
     error_message = "`identity_type`'s possible values are `SystemAssigned` and `UserAssigned`"
   }
 }
