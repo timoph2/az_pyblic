@@ -127,7 +127,7 @@ variable "agents_pool_linux_os_configs" {
       vm_max_map_count                   = optional(number)
       vm_swappiness                      = optional(number)
       vm_vfs_cache_pressure              = optional(number)
-    })), [])
+    })))
     transparent_huge_page_enabled = optional(string)
     transparent_huge_page_defrag  = optional(string)
     swap_file_size_mb             = optional(number)
