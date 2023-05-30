@@ -20,12 +20,12 @@ variable "address_space" {
   type        = list(string)
   default     = ["10.0.0.0/16"]
   description = "The address space that is used by the virtual network."
-}
+# }
 
-variable "bgp_community" {
-  type        = string
-  default     = null
-  description = "(Optional) The BGP community attribute in format `<as-number>:<community-value>`."
+# variable "bgp_community" {
+#   type        = string
+#   default     = null
+#   description = "(Optional) The BGP community attribute in format `<as-number>:<community-value>`."
 }
 
 # variable "ddos_protection_plan" {
