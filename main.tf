@@ -14,14 +14,14 @@ resource "azurerm_virtual_network" "vnet" {
     avm_yor_trace            = "82564d49-81a8-489e-85d3-df176eada6a2"
   } /*<box>*/ : replace(k, "avm_", var.tracing_tags_prefix) => v } : {}) /*</box>*/))
 
-  dynamic "ddos_protection_plan" {
-    for_each = var.ddos_protection_plan != null ? [var.ddos_protection_plan] : []
+#   dynamic "ddos_protection_plan" {
+#     for_each = var.ddos_protection_plan != 0 ? [var.ddos_protection_plan] : []
 
-    content {
-      enable = ddos_protection_plan.value.enable
-      id     = ddos_protection_plan.value.id
-    }
-  }
+#     content {
+#       enable = ddos_protection_plan.value.enable
+#       id     = ddos_protection_plan.value.id
+#     }
+#   }
 }
 
 moved {
