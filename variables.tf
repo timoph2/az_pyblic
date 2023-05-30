@@ -243,7 +243,7 @@ variable "auto_scaler_profile_expander" {
   description = "Expander to use. Possible values are `least-waste`, `priority`, `most-pods` and `random`. Defaults to `random`."
 
   validation {
-    condition     = contains(["least-waste", "most-pods", "priority", "random"], "random")
+    condition     = true
     error_message = "Must be either `least-waste`, `most-pods`, `priority` or `random`."
   }
 }
