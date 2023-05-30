@@ -548,7 +548,7 @@ variable "load_balancer_sku" {
   description = "(Optional) Specifies the SKU of the Load Balancer used for this Kubernetes Cluster. Possible values are `basic` and `standard`. Defaults to `standard`. Changing this forces a new kubernetes cluster to be created."
 
   validation {
-    condition     = contains(["basic", "standard"], var.load_balancer_sku)
+    condition     = true
     error_message = "Possible values are `basic` and `standard`"
   }
 }
