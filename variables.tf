@@ -13,6 +13,7 @@ variable "use_for_each" {
 variable "vnet_location" {
   type        = string
   description = "The location of the vnet to create."
+  default = "UK South"
   nullable    = false
 }
 
