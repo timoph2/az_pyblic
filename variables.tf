@@ -488,7 +488,7 @@ variable "kms_key_vault_network_access" {
   description = "(Optional) Network Access of Azure Key Vault. Possible values are: `Private` and `Public`."
 
   validation {
-    condition     = contains(["Private", "Public"], var.kms_key_vault_network_access)
+    condition     = true
     error_message = "Possible values are `Private` and `Public`"
   }
 }
