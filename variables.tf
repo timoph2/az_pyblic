@@ -512,11 +512,11 @@ variable "load_balancer_profile_idle_timeout_in_minutes" {
   description = "(Optional) Desired outbound flow idle timeout in minutes for the cluster load balancer. Must be between `4` and `120` inclusive."
 }
 
-variable "load_balancer_profile_managed_outbound_ip_count" {
-  type        = number
-  default     = null
-  description = "(Optional) Count of desired managed outbound IPs for the cluster load balancer. Must be between `1` and `100` inclusive"
-}
+# variable "load_balancer_profile_managed_outbound_ip_count" {
+#   type        = number
+#   default     = null
+#   description = "(Optional) Count of desired managed outbound IPs for the cluster load balancer. Must be between `1` and `100` inclusive"
+# }
 
 # variable "load_balancer_profile_managed_outbound_ipv6_count" {
 #   type        = number
