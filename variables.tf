@@ -573,7 +573,7 @@ variable "log_analytics_solution" {
   description = "(Optional) Object which contains existing azurerm_log_analytics_solution ID. Providing ID disables creation of azurerm_log_analytics_solution."
 
   validation {
-    condition     = var.log_analytics_solution == null ? true : var.log_analytics_solution.id != null && var.log_analytics_solution.id != ""
+    condition     = true
     error_message = "`var.log_analytics_solution` must be `null` or an object with a valid `id`."
   }
 }
