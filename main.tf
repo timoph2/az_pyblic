@@ -3,7 +3,7 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.vnet_location
   name                = var.vnet_name
   resource_group_name = var.resource_group_name
-  bgp_community       = var.bgp_community
+#   bgp_community       = var.bgp_community
   dns_servers         = var.dns_servers
   tags = merge(var.tags, (/*<box>*/ (var.tracing_tags_enabled ? { for k, v in /*</box>*/ {
     avm_git_commit           = "2b2f05969200c71b6609f4cdfa9120d48af55537"
