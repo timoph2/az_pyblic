@@ -28,14 +28,17 @@ variable "bgp_community" {
   description = "(Optional) The BGP community attribute in format `<as-number>:<community-value>`."
 }
 
-# variable "ddos_protection_plan" {
-#   type = object({
-#     enable = bool
-#     id     = string
-#   })
-#   default     = null
-#   description = "The set of DDoS protection plan configuration"
-# }
+variable "ddos_protection_plan" {
+  type = object({
+    enable = bool
+    id     = string
+  })
+  default     = {
+  enable = false
+  id = "" 
+    }
+  description = "The set of DDoS protection plan configuration"
+}
 
 # If no values specified, this defaults to Azure DNS
 variable "dns_servers" {
