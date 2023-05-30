@@ -343,7 +343,7 @@ variable "automatic_channel_upgrade" {
 #     ], var.automatic_channel_upgrade)
 #     error_message = "`automatic_channel_upgrade`'s possible values are `patch`, `stable`, `rapid` or `node-image`."
 #   }
-# }
+}
 
 variable "azure_policy_enabled" {
   type        = bool
