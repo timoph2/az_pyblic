@@ -67,7 +67,7 @@ variable "agents_min_count" {
 variable "agents_pool_kubelet_configs" {
   type = list(object({
     cpu_manager_policy        = optional(string)
-    cpu_cfs_quota_enabled     = optional(bool, true)
+    cpu_cfs_quota_enabled     = optional(bool)
     cpu_cfs_quota_period      = optional(string)
     image_gc_high_threshold   = optional(number)
     image_gc_low_threshold    = optional(number)
