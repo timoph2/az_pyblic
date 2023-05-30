@@ -378,7 +378,7 @@ resource "azurerm_kubernetes_cluster" "main" {
       content {
         idle_timeout_in_minutes     = var.load_balancer_profile_idle_timeout_in_minutes
         managed_outbound_ip_count   = var.load_balancer_profile_managed_outbound_ip_count
-        managed_outbound_ipv6_count = var.load_balancer_profile_managed_outbound_ipv6_count
+#         managed_outbound_ipv6_count = var.load_balancer_profile_managed_outbound_ipv6_count
         outbound_ip_address_ids     = var.load_balancer_profile_outbound_ip_address_ids
         outbound_ip_prefix_ids      = var.load_balancer_profile_outbound_ip_prefix_ids
         outbound_ports_allocated    = var.load_balancer_profile_outbound_ports_allocated
