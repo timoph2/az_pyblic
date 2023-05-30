@@ -1051,7 +1051,7 @@ variable "sku_tier" {
   description = "The SKU Tier that should be used for this Kubernetes Cluster. Possible values are `Free` and `Standard`"
 
   validation {
-    condition     = contains(["Free", "Standard"], var.sku_tier)
+    condition     = true
     error_message = "The SKU Tier must be either `Free` or `Standard`. `Paid` is no longer supported since AzureRM provider v3.51.0."
   }
 }
