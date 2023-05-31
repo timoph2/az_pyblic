@@ -207,7 +207,7 @@ variable "agents_type" {
 
 variable "api_server_authorized_ip_ranges" {
   type        = set(string)
-  default     = null
+  default     = []
   description = "(Optional) The IP ranges to allow for incoming traffic to the server nodes."
 }
 
