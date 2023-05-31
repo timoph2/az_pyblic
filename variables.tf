@@ -526,7 +526,7 @@ variable "load_balancer_profile_idle_timeout_in_minutes" {
 
 variable "load_balancer_profile_outbound_ip_address_ids" {
   type        = set(string)
-  default     = null
+  default     = []
   description = "(Optional) The ID of the Public IP Addresses which should be used for outbound communication for the cluster load balancer."
 }
 
