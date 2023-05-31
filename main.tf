@@ -28,7 +28,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   local_account_disabled              = var.local_account_disabled
   node_resource_group                 = var.node_resource_group
   oidc_issuer_enabled                 = var.oidc_issuer_enabled
-  open_service_mesh_enabled           = var.open_service_mesh_enabled
+#   open_service_mesh_enabled           = var.open_service_mesh_enabled
   private_cluster_enabled             = var.private_cluster_enabled
   private_cluster_public_fqdn_enabled = var.private_cluster_public_fqdn_enabled
   private_dns_zone_id                 = var.private_dns_zone_id
@@ -62,7 +62,7 @@ resource "azurerm_kubernetes_cluster" "main" {
       node_count                   = var.agents_count
       node_labels                  = var.agents_labels
       node_taints                  = var.agents_taints
-      only_critical_addons_enabled = var.only_critical_addons_enabled
+#       only_critical_addons_enabled = var.only_critical_addons_enabled
       orchestrator_version         = var.orchestrator_version
       os_disk_size_gb              = var.os_disk_size_gb
       os_disk_type                 = var.os_disk_type
@@ -153,7 +153,7 @@ resource "azurerm_kubernetes_cluster" "main" {
       min_count                    = var.agents_min_count
       node_labels                  = var.agents_labels
       node_taints                  = var.agents_taints
-      only_critical_addons_enabled = var.only_critical_addons_enabled
+#       only_critical_addons_enabled = var.only_critical_addons_enabled
       orchestrator_version         = var.orchestrator_version
       os_disk_size_gb              = var.os_disk_size_gb
       os_disk_type                 = var.os_disk_type
