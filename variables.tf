@@ -530,11 +530,11 @@ variable "load_balancer_profile_outbound_ip_address_ids" {
   description = "(Optional) The ID of the Public IP Addresses which should be used for outbound communication for the cluster load balancer."
 }
 
-variable "load_balancer_profile_outbound_ip_prefix_ids" {
-  type        = set(string)
-  default     = []
-  description = "(Optional) The ID of the outbound Public IP Address Prefixes which should be used for the cluster load balancer."
-}
+# variable "load_balancer_profile_outbound_ip_prefix_ids" {
+#   type        = set(string)
+#   default     = []
+#   description = "(Optional) The ID of the outbound Public IP Address Prefixes which should be used for the cluster load balancer."
+# }
 
 variable "load_balancer_profile_outbound_ports_allocated" {
   type        = number
