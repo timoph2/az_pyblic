@@ -18,7 +18,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   location                            = coalesce(var.location, data.azurerm_resource_group.main.location)
   name                                = var.cluster_name == null ? "${var.prefix}-aks" : var.cluster_name
   resource_group_name                 = data.azurerm_resource_group.main.name
-  api_server_authorized_ip_ranges     = var.api_server_authorized_ip_ranges
+#   api_server_authorized_ip_ranges     = var.api_server_authorized_ip_ranges
   automatic_channel_upgrade           = var.automatic_channel_upgrade
   azure_policy_enabled                = var.azure_policy_enabled
   disk_encryption_set_id              = var.disk_encryption_set_id
