@@ -532,7 +532,7 @@ variable "load_balancer_profile_outbound_ip_address_ids" {
 
 variable "load_balancer_profile_outbound_ip_prefix_ids" {
   type        = set(string)
-  default     = null
+  default     = []
   description = "(Optional) The ID of the outbound Public IP Address Prefixes which should be used for the cluster load balancer."
 }
 
