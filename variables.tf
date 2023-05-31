@@ -894,17 +894,17 @@ variable "oidc_issuer_enabled" {
   description = "Enable or Disable the OIDC issuer URL. Defaults to false."
 }
 
-variable "only_critical_addons_enabled" {
-  type        = bool
-  default     = false
-  description = "(Optional) Enabling this option will taint default node pool with `CriticalAddonsOnly=true:NoSchedule` taint. Changing this forces a new resource to be created."
-}
+# variable "only_critical_addons_enabled" {
+#   type        = bool
+#   default     = false
+#   description = "(Optional) Enabling this option will taint default node pool with `CriticalAddonsOnly=true:NoSchedule` taint. Changing this forces a new resource to be created."
+# }
 
-variable "open_service_mesh_enabled" {
-  type        = bool
-  default     = false
-  description = "Is Open Service Mesh enabled? For more details, please visit [Open Service Mesh for AKS](https://docs.microsoft.com/azure/aks/open-service-mesh-about)."
-}
+# variable "open_service_mesh_enabled" {
+#   type        = bool
+#   default     = false
+#   description = "Is Open Service Mesh enabled? For more details, please visit [Open Service Mesh for AKS](https://docs.microsoft.com/azure/aks/open-service-mesh-about)."
+# }
 
 variable "orchestrator_version" {
   type        = string
