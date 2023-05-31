@@ -205,11 +205,11 @@ variable "agents_type" {
   description = "(Optional) The type of Node Pool which should be created. Possible values are AvailabilitySet and VirtualMachineScaleSets. Defaults to VirtualMachineScaleSets."
 }
 
-variable "api_server_authorized_ip_ranges" {
-  type        = set(string)
-  default     = []
-  description = "(Optional) The IP ranges to allow for incoming traffic to the server nodes."
-}
+# variable "api_server_authorized_ip_ranges" {
+#   type        = set(string)
+#   default     = null
+#   description = "(Optional) The IP ranges to allow for incoming traffic to the server nodes."
+# }
 
 variable "attached_acr_id_map" {
   type        = map(string)
