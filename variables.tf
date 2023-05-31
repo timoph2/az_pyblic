@@ -975,11 +975,11 @@ variable "rbac_aad" {
   nullable    = false
 }
 
-variable "rbac_aad_admin_group_object_ids" {
-  type        = list(string)
-  default     = []
-  description = "Object ID of groups with admin access."
-}
+# variable "rbac_aad_admin_group_object_ids" {
+#   type        = list(string)
+#   default     = []
+#   description = "Object ID of groups with admin access."
+# }
 
 variable "rbac_aad_azure_rbac_enabled" {
   type        = bool
