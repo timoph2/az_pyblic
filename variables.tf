@@ -977,7 +977,7 @@ variable "rbac_aad" {
 
 variable "rbac_aad_admin_group_object_ids" {
   type        = list(string)
-  default     = null
+  default     = []
   description = "Object ID of groups with admin access."
 }
 
